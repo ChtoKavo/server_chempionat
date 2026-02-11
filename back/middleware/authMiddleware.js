@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const VALID_ROLES = ['Технический эксперт', 'Главный эксперт', 'Эксперт', 'Участник'];
+const VALID_ROLES = ['tex', 'gexp', 'exp', 'part'];
 
 exports.verifyToken = (req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1];

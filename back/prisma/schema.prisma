@@ -13,7 +13,7 @@ model User {
   password String
   firstName String
   lastName String
-  role  String  @default("Участник")
+  role  String  @default("part")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

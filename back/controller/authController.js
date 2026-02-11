@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const prisma = new PrismaClient();
 
-const VALID_ROLES = ['Технический эксперт', 'Главный эксперт', 'Эксперт', 'Участник'];
+const VALID_ROLES = ['tex', 'gexp', 'exp', 'part'];
 
 const generateToken = (id, email) => {
   return jwt.sign({ id, email }, process.env.JWT_SECRET, {
@@ -23,7 +23,7 @@ exports.register = async (req, res) => {
       });
     }
 
-    const roleValue = role || 'Участник';
+    const roleValue = role || 'part';
     
     if (!VALID_ROLES.includes(roleValue)) {
       return res.status(400).json({

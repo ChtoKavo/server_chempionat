@@ -11,14 +11,14 @@ router.get('/profile', authMiddleware.verifyToken, authController.getProfile);
 router.get(
   '/users',
   authMiddleware.verifyToken,
-  authMiddleware.checkRole(['Технический эксперт', 'Главный эксперт']),
+  authMiddleware.checkRole(['tex', 'gexp']),
   authController.getAllUsers
 );
 
 router.post(
   '/users/update-role',
   authMiddleware.verifyToken,
-  authMiddleware.checkRole(['Технический эксперт']),
+  authMiddleware.checkRole(['tex']),
   authController.updateUserRole
 );
 
