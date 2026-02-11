@@ -16,4 +16,28 @@ model User {
   role  String  @default("part")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  events Event[]
+  modules Module[]
+}
+
+model Event {
+  id    Int     @id @default(autoincrement())
+  name  String
+  count Int
+  createdBy Int
+  createdByUser User @relation(fields: [createdBy], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  modules Module[]
+}
+
+model Module {
+  id    Int     @id @default(autoincrement())
+  name  String
+  eventId Int
+  event Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  createdBy Int
+  createdByUser User @relation(fields: [createdBy], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

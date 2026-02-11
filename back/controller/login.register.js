@@ -134,42 +134,6 @@ exports.login = async (req, res) => {
   }
 };
 
-exports.getProfile = async (req, res) => {
-  try {
-    const userId = req.user.id;
-
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
-    });
-
-    if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: 'Пользователь не найден',
-      });
-    }
-
-    res.status(200).json({
-      success: true,
-      user: {
-        id: user.id,
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        role: user.role,
-        createdAt: user.createdAt,
-      },
-    });
-  } catch (error) {
-    console.error('Ошибка при получении профиля:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Ошибка сервера',
-      error: error.message,
-    });
-  }
-};
-
 exports.getAllUsers = async (req, res) => {
   try {
     const users = await prisma.user.findMany({
